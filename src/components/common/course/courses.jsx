@@ -7,6 +7,7 @@ import { Calendar, utils } from 'react-modern-calendar-datepicker';
 import { isActive } from '../isActive';
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
+import baseURL from '../../../proxy';
 
 class Courses extends Component {
 	state = {
@@ -21,7 +22,9 @@ class Courses extends Component {
 
 		if (userCourses)
 			for (let i = 0; i < userCourses.length; i++) {
-				const { data } = await axios.get(`/api/courses/${userCourses[i]}`);
+				const { data } = await axios.get(
+					`${baseURL}/api/courses/${userCourses[i]}`
+				);
 				courses.push(data);
 			}
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import renderData from '../../common/progressBar';
 import AttendancePDF from './attendancePDF';
+import baseURL from '../../../proxy';
 
 class AttendanceTable extends Component {
 	state = {
@@ -26,15 +27,20 @@ class AttendanceTable extends Component {
 		const { code, date } = this.props;
 
 		try {
-			const { data: course } = await axios.get(`/api/courses/${code}`);
-
-			const { data: total } = await axios.get(
-				`/api/users?role=student&code=${code}`
+			const { data: course } = await axios.get(
+				`${baseURL}/api/courses/${code}`
 			);
 
-			const { data: present } = await axios.post(`/api/attendance/${code}`, {
-				date
-			});
+			const { data: total } = await axios.get(
+				`${baseURL}/api/users?role=student&code=${code}`
+			);
+
+			const { data: present } = await axios.post(
+				`${baseURL}/api/attendance/${code}`,
+				{
+					date
+				}
+			);
 
 			// lecture name for the current date
 			const lecture = course.dates.filter(d => d.date === date)[0].lecture;

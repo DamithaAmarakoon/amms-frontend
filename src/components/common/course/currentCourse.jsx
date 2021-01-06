@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { default as Lecturer } from '../../lecturer/currentCourse';
 import { default as Student } from '../../student/currentCourse';
+import baseURL from '../../../proxy';
 
 class CurrentCourse extends Component {
 	state = {
@@ -13,7 +14,7 @@ class CurrentCourse extends Component {
 	async componentDidMount() {
 		try {
 			const { data: course } = await axios.get(
-				`/api/courses/${this.props.match.params.code}`
+				`${baseURL}/api/courses/${this.props.match.params.code}`
 			);
 			this.setState({ course });
 		} catch (err) {

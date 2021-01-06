@@ -4,6 +4,7 @@ import Joi from 'joi';
 import axios from 'axios';
 import { Breadcrumb, Dropdown } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import baseURL from '../../proxy';
 
 class MedicalForm extends Form {
 	state = {
@@ -60,7 +61,7 @@ class MedicalForm extends Form {
 	getUser = async index => {
 		try {
 			const { data: user } = await axios.get(
-				`/api/users/${index}?role=student`
+				`${baseURL}/api/users/${index}?role=student`
 			);
 
 			const { firstName, username } = user;
@@ -138,7 +139,7 @@ class MedicalForm extends Form {
 		const { index, reason, year, semester, livingPlace } = this.state.data;
 
 		try {
-			await axios.post(`/api/medicals`, {
+			await axios.post(`${baseURL}/api/medicals`, {
 				index,
 				reason,
 				year: parseInt(year),

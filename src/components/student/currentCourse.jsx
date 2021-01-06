@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { isActive } from '../common/isActive';
 import axios from 'axios';
 import { Breadcrumb } from 'react-bootstrap';
+import baseURL from '../../proxy';
 
 class CurrentCourse extends Component {
 	state = { course: {}, active: false, marked: false, password: '' };
@@ -9,7 +10,7 @@ class CurrentCourse extends Component {
 	async componentDidMount() {
 		try {
 			const code = this.props.match.params.code;
-			const { data } = await axios.get(`/api/courses/${code}`);
+			const { data } = await axios.get(`${baseURL}/api/courses/${code}`);
 
 			const course = {
 				id: data._id,
@@ -28,7 +29,9 @@ class CurrentCourse extends Component {
 
 	isMarked = async (student, course) => {
 		try {
-			const { data } = await axios.get(`/api/attendance/${student}/${course}`);
+			const { data } = await axios.get(
+				`${baseURL}/api/attendance/${student}/${course}`
+			);
 			return data;
 		} catch (err) {
 			console.error(err.message);
@@ -44,7 +47,7 @@ class CurrentCourse extends Component {
 			};
 
 			try {
-				await axios.post(`/api/attendance`, obj);
+				await axios.post(`${baseURL}/api/attendance`, obj);
 				this.setState({ marked: true });
 			} catch (err) {
 				console.error(err);

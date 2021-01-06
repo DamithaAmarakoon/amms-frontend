@@ -4,13 +4,14 @@ import AttendanceTable from './table';
 import axios from 'axios';
 import moment from 'moment';
 import { Breadcrumb } from 'react-bootstrap';
+import baseURL from '../../../proxy';
 
 class AttendanceStu extends Component {
 	state = { currentCourse: '', course: {}, presentDates: [] };
 
 	handleCourseSelect = async code => {
 		try {
-			const { data } = await axios.get(`/api/courses/${code}`);
+			const { data } = await axios.get(`${baseURL}/api/courses/${code}`);
 
 			const course = {
 				id: data._id,
@@ -19,7 +20,7 @@ class AttendanceStu extends Component {
 			};
 
 			const { data: dates } = await axios.post(
-				`/api/attendance/${this.props.user.id}/${course.id}`
+				`${baseURL}/api/attendance/${this.props.user.id}/${course.id}`
 			);
 
 			const presentDates =

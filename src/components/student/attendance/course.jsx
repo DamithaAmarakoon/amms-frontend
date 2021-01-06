@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import baseURL from '../../../proxy';
 
 class Course extends Component {
 	state = { course: {} };
 
 	async componentDidMount() {
 		try {
-			const { data } = await axios.get(`/api/courses/${this.props.course}`);
+			const { data } = await axios.get(
+				`${baseURL}/api/courses/${this.props.course}`
+			);
 
 			const course = {
 				code: data.code,

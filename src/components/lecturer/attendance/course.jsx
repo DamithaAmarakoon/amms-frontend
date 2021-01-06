@@ -2,13 +2,16 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import Dates from './dates';
 import { Accordion, Card } from 'react-bootstrap';
+import baseURL from '../../../proxy';
 
 class Course extends Component {
 	state = { course: {} };
 
 	async componentDidMount() {
 		try {
-			const { data } = await axios.get(`/api/courses/${this.props.course}`);
+			const { data } = await axios.get(
+				`${baseURL}/api/courses/${this.props.course}`
+			);
 
 			const course = {
 				code: data.code,

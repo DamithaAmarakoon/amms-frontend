@@ -6,6 +6,7 @@ import Loading from '../common/loading';
 import Form from '../common/form';
 import { isActive } from '../common/isActive';
 import { Breadcrumb } from 'react-bootstrap';
+import baseURL from '../../proxy';
 
 class CurrentCourse extends Form {
 	state = {
@@ -26,7 +27,7 @@ class CurrentCourse extends Form {
 	async componentDidMount() {
 		try {
 			const code = this.props.match.params.code;
-			const { data } = await axios.get(`/api/courses/${code}`);
+			const { data } = await axios.get(`${baseURL}/api/courses/${code}`);
 
 			const course = {
 				code: data.code,
@@ -57,7 +58,7 @@ class CurrentCourse extends Form {
 			data.lecture
 		) {
 			try {
-				await axios.patch(`/api/courses/${course.code}/${password}`, {
+				await axios.patch(`${baseURL}/api/courses/${course.code}/${password}`, {
 					lecture: data.lecture
 				});
 				this.setState({ data: { lecture: '' }, errors: { lecture: '' } });

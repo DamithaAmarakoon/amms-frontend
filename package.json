@@ -2,7 +2,7 @@
   "name": "amms-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.8.100:9000",
+  "proxy": "https://amms-backend.herokuapp.com",
   "dependencies": {
     "@react-pdf/renderer": "^1.6.12",
     "@reduxjs/toolkit": "^1.5.0",

@@ -1,0 +1,28 @@
+#dropdown-navbar::after {
+  display: none;
+}
+
+.qrbox {
+  display: flex;
+  width: 300px;
+  border: 2px solid #bada55;
+  border-radius: 0.5rem;
+  height: 300px;
+  padding: 1rem;
+}
+
+.icon-badge {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 15%;
+  right: 2%;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
